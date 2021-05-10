@@ -2,8 +2,9 @@
 	<h2>N° Cuenta: {{ numCue }}</h2>
 	<h2>Tipo de cuenta: {{ cuenta }}</h2>
 	<h2>Propietario: {{ propietario }}</h2>
-	<h2 :class = "[myClass]">Saldo: {{ saldo }}</h2>
-	<h2 v-if="saldo === 0" class = "noMoney">Ya no tienes dinero</h2>
+	<h2
+		>Saldo: <span :class="[myClass]">{{ saldo }}</span> <span v-if="saldo === 0" class="noMoney">Ya no tienes dinero :c</span></h2
+	>
 	<h2>Estado: {{ estado ? "Activa" : "Inactiva" }}</h2>
 	<h2>Servicios disponibles:</h2>
 	<h2 v-for="(servicio, index) in servicios" :key="index">{{ index + 1 }}) {{ servicio }}</h2>
@@ -37,30 +38,27 @@
 		methods: {
 			aumentarSaldo() {
 				this.saldo = this.saldo + 100;
-				if(this.saldo > 0) this.disable = false;
+				if (this.saldo > 0) this.disable = false;
 			},
 			disminuirSaldo() {
 				this.saldo = this.saldo - 100;
-				if(this.saldo === 0){
+				if (this.saldo === 0) {
 					this.disable = true;
 					return;
 				}
 			},
 		},
 		computed: {
-			myClass(){
-				if(this.saldo === 0) return 'noMoney';
-				if(this.saldo > 0 && this.saldo < 500) return 'warn'
-				if(this.saldo >= 500) return 'yesMoney'
-			}
-		}
+			myClass() {
+				if (this.saldo === 0) return "noMoney";
+				if (this.saldo > 0 && this.saldo < 500) return "warn";
+				if (this.saldo >= 500) return "yesMoney";
+			},
+		},
 	};
 </script>
 
-<style>
-	#button2 {
-		margin-left: 10px;
-	}
+<style scoped>
 	.noMoney {
 		color: rgb(255, 0, 0);
 	}
@@ -68,6 +66,16 @@
 		color: #40b883;
 	}
 	.warn {
-		color: rgb(236, 164, 9)
+		color: rgb(236, 164, 9);
+	}
+	.buttons {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	@media (max-width: 411px) {
+		h2 {
+			font-size: 15px;
+		}
 	}
 </style>

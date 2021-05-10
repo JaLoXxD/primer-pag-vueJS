@@ -37,6 +37,7 @@
 		margin-top: 5vh;
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
 		width: 100%;
 		height: 500px;
 	}
@@ -52,8 +53,18 @@
 	#cuenta {
 		margin-left: 10px;
 	}
+	#vue {
+		-webkit-filter: drop-shadow(15px 15px 15px #222);
+		filter: drop-shadow(15px 15px 15px #222);
+	}
 	.header {
 		display: flex;
 		justify-content: center;
+	}
+	@media (max-width: 411px) {
+		#contenedor {
+			font-size: 15px;
+			margin-top: 0;
+		}
 	}
 </style>
